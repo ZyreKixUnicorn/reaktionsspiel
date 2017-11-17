@@ -7,22 +7,31 @@
 
 <style media="screen">
 
+body{
+  background: url("http://operetta-research-center.org/wp-content/uploads/2014/05/Rainbow.jpg");
+  background-size: cover;
+}
+
 h1{
   text-align: center;
+  color: white;
 }
 
 #time{
   text-align: center;
+  color: white;
 }
 
 #figure{
     position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
 </style>
 
   <body>
- <h1>Das große Reaktionsspiel für jung und alt.</h1>
+ <h1>Fange das Einhorn!</h1>
     <h2><div id="time"></div></h2>
     <div id="figure"></div>
 
@@ -38,22 +47,33 @@ h1{
         var figure = document.getElementById("figure");
 
         function showFigure(){
-          var size = getRandomInt (100,300);
+          var size = getRandomInt(100,300);
           var x = getRandomInt(0,window.innerWidth-size);
         	var y = getRandomInt(200,window.innerHeight-size);
 
+          var images = ["http://pluspng.com/img-png/unicorn-png--1121.png","https://www.spreadshirt.at/image-server/v1/mp/designs/136056500,width=178,height=178/unicorn-dabbing-einhorn-t-shirt.png","http://www.pngmart.com/files/3/Unicorn-PNG-Free-Download-385x279.png","https://www.spreadshirt.com/image-server/v1/mp/designs/1100108863,width=178,height=178/rainbow-pooping-unicorn.png","https://maxicanvas.com/image/display/369/chibi-horse-unicorn.png","http://blog.romant.net/wp-content/uploads/2012/04/cloud-unicorn.png","https://www.wandmotiv24.de/out/pictures/master/product/1/39x49_sitzendeseinhorn.png","https://i.ebayimg.com/00/s/MTAyNFgxMDI0/z/~EAAAOSw-89ZQBqc/$_72.PNG","http://www.team-hardcare.de/img/Einhorn.png","https://www.spreadshirt.de/image-server/v1/mp/designs/135691264,width=178,height=178/regenbogen-pinkelndes-einhorn.png","https://moppeleinhorn.de/moppeleinhorn.png","https://i.pinimg.com/originals/a6/4c/83/a64c8390eb1ce0e7a872e77d749bd4da.png","https://media.giphy.com/media/13lH6DkValUn4s/giphy.gif","https://i.giphy.com/media/WZmgVLMt7mp44/giphy.webp","https://i.giphy.com/media/Wrc5AxVo9iS9W/source.gif","https://i.imgur.com/6AsGmRM.gif"];
+          images[getRandomInt(0, images.length-1)];
+
           figure.style.width = size+"px";
           figure.style.height = size+"px";
-          figure.style.background = '#'+Math.floor(Math.random()*15132390).toString(16);
+          figure.style.backgroundImage = "url("+images[getRandomInt(0, images.length-1)]+")";
+          figure.style.backgroundSize = "contain";
           figure.style.left = x+"px";
           figure.style.top = y+"px";
 
-          if(Math.random() > 0.5){
-            figure.style.borderRadius = "50%";
-          }
-          else {
-            figure.style.borderRadius = "0";
-          }
+      //     if(Math.random() > 0.5){
+      //       figure.style.borderRadius = "50%";
+      //     }
+      //     else {
+      //       figure.style.borderRadius = "0";
+      //     }
+
+      //     if(Math.random() > 0.5){
+      //       figure.style.borderRadius = "50%";
+      //     }
+      //     else {
+      //       figure.style.borderRadius = "0";
+      //     }
 
           figure.style.display = "block";
           start = new Date().getTime();
@@ -72,7 +92,7 @@ h1{
         var dauer = (ende - start) / 1000;
         figure.style.display = "none";
 
-        document.getElementById("time").innerHTML = "Deine Zeit: " +dauer;
+        document.getElementById("time").innerHTML = "Du hast " +dauer+ " gebraucht um das Einhorn zu fangen.";
 
         delay();
 
