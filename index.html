@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Reaktionsspiel</title>
+  </head>
+
+<style media="screen">
+
+h1{
+  text-align: center;
+}
+
+#time{
+  text-align: center;
+}
+
+#figure{
+    position: absolute;
+  }
+
+</style>
+
+  <body>
+ <h1>Das große Reaktionsspiel für jung und alt.</h1>
+    <h2><div id="time"></div></h2>
+    <div id="figure"></div>
+
+    <script type="text/javascript">
+
+    var start = new Date().getTime();
+
+      function getRandomInt(min,max) {
+        var randomNumber = Math.floor(Math.random()*(max-min+1)+min)
+        return randomNumber;
+      }
+
+        var figure = document.getElementById("figure");
+
+        function showFigure(){
+          var size = getRandomInt (100,300);
+          var x = getRandomInt(0,window.innerWidth-size);
+        	var y = getRandomInt(200,window.innerHeight-size);
+
+          figure.style.width = size+"px";
+          figure.style.height = size+"px";
+          figure.style.background = '#'+Math.floor(Math.random()*15132390).toString(16);
+          figure.style.left = x+"px";
+          figure.style.top = y+"px";
+
+          if(Math.random() > 0.5){
+            figure.style.borderRadius = "50%";
+          }
+          else {
+            figure.style.borderRadius = "0";
+          }
+
+          figure.style.display = "block";
+          start = new Date().getTime();
+      }
+
+      function delay(){
+        setTimeout(showFigure, Math.random() * 1000);
+      }
+
+      delay();
+
+
+      figure.onclick = function(){
+
+        var ende = new Date().getTime();
+        var dauer = (ende - start) / 1000;
+        figure.style.display = "none";
+
+        document.getElementById("time").innerHTML = "Deine Zeit: " +dauer;
+
+        delay();
+
+      }
+
+    </script>
+
+  </body>
+</html>
